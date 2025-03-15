@@ -39,3 +39,28 @@ class PackagedWine(Wine):
     def __str__(self):
         #Відображення фасованого вина у зручному форматі
         return f"{self.get_brand()} ({self.get_description()}) - {self.get_strength()}%, {self.__volume} л, тара: {self.__container}"
+from packaged_wine import PackagedWine
+
+# Створення об'єктів класу PackagedWine
+wine1 = PackagedWine("Аліготе", "біле сухе", 10.5, 0.75, "скло")
+wine2 = PackagedWine("Каберне", "червоне напівсухе", 12.0, 1.5, "тетрапак")
+
+# Вивід об'єктів
+print("Фасоване вино:")
+print(wine1)
+print(wine2)
+
+# Зміна тари
+print("\nЗміна тари:")
+wine1.switch_container()
+wine2.switch_container()
+print(f"Нова тара {wine1.get_brand()}: {wine1.get_container()}")
+print(f"Нова тара {wine2.get_brand()}: {wine2.get_container()}")
+
+# Зменшення об'єму
+print("\nЗменшення об'єму:")
+wine1_half = wine1 / 2  # Ділимо на 2
+wine2_third = wine2 / 3  # Ділимо на 3
+print(f"Новий об'єм {wine1_half.get_brand()}: {wine1_half.get_volume()} л")
+print(f"Новий об'єм {wine2_third.get_brand()}: {wine2_third.get_volume()} л")
+
