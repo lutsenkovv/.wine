@@ -14,14 +14,15 @@ class WineCollection:
         #Завантажує вина з текстового файлу у форматі: Назва:Опис:Міцність:Об'єм:Тара
         try:
             with open(filename, "r", encoding="utf-8") as file:
-                for line in file:
+                for line_number, line in enumerate(file, start=1):
                     parts = line.strip().split(":")
                     if len(parts) != 5:
-                        print(f"Некоректний формат рядка: {line.strip()}, пропускаємо...")
+                        print(f"Рядок {line_number}: Некоректний формат ({line.strip()}), пропускаємо...")
                         continue
-                    brand, description, strength, volume, container = parts
-                    wine = PackagedWine(brand, description, float(strength), float(volume), container)
-                    self.add_wine(wine)
+                        try:
+                            brand, description, strength, volume, container = parts
+                            wine = PackagedWine(brand, description, float(strength), float(volume), container)
+                            self.add_wine(wine)
         except FileNotFoundError:
             print(f"Файл {filename} не знайдено.")
 
